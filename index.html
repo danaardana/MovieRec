@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="html template">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Asad">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MovieRec - Personalized Movie Recommendations</title>
+
+    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="assets/css/all.min.css"> 
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css"> 
+    <link rel="stylesheet" href="assets/css/meanmenu.css"> 
+    <link rel="stylesheet" href="assets/css/magnific-popup.css"> 
+    <link rel="stylesheet" href="assets/css/nice-select.css"> 
+    <link rel="stylesheet" href="assets/css/backtotop.css"> 
+    <link rel="stylesheet" href="assets/css/main.css"> 
+
+  </head>
+  <body>
+
+    <!-- Cursor start -->
+    <div class="rts-cursor cursor-outer" data-default="yes" data-link="yes" data-slider="no">
+        <span class="fn-cursor"></span>
+    </div>
+    <div class="rts-cursor cursor-inner" data-default="yes" data-link="yes" data-slider="no">
+        <span class="fn-cursor">
+        <span class="fn-left"></span>
+        <span class="fn-right"></span>
+        </span>
+    </div>
+    <!-- Cursor end -->
+
+    <!-- back to top start -->
+    <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+           <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- back to top end -->
+  
+    <!-- sidebar-information-area-start -->
+    <div class="sidebar-info side-info">
+        <div class="sidebar-logo-wrapper mb-25">
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-8">
+                    <div class="sidebar-logo">
+                        <a href="index.html"><img src="assets/images/logo/logo-w.png" alt="logo-img"></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-4">
+                    <div class="sidebar-close-wrapper text-end">
+                        <button class="sidebar-close side-info-close"><i class="fal fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-menu-wrapper fix">
+            <div class="mobile-menu"></div>
+        </div>
+    </div>
+    <div class="offcanvas-overlay"></div>
+    <!-- sidebar-information-area-end -->
+
+
+    <div class="has-smooth" id="has_smooth"></div>
+    
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <div class="body-wrapper">
+                
+                <header class="h3_header-area header-sticky">
+                    <div class="container custom-container-1">
+                        <div class="row align-items-center">
+
+                            <div class="col-xl-2 col-lg-2 col-6">
+                                <div class="h3_header-logo">
+                                    <a href="index.html"><img src="assets/images/logo/logo.png" alt="Image Not Found"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <main>
+                    <!-- banner area start -->
+                    <section class="h3_banner-area">
+                        <div class="container custom-container-1">
+                            <div class="h3_banner-single">
+                                <div class="h3_banner-content">
+                                    <span class="h3_banner-content-subtitle tp_fade_left">
+                                        Simple & Intelligent Movie Recommendations
+                                    </span>
+                                
+                                    <h1 class="h3_banner-content-title tp_title_anim">
+                                        Movie Discovery
+                                        Powered by<span> Collaborative Filtering</span>
+                                    </h1>
+                                
+                                    <div class="h3_banner-form tp_fade_bottom">
+                                        <form action="#" method="post">
+                                            
+                                            <!-- User ID Input -->
+                                            <input 
+                                                type="number" 
+                                                name="user_id" 
+                                                placeholder="Enter your User ID"
+                                                min="1"
+                                                required
+                                            >
+                                
+                                            <!-- Category Dropdown -->
+                                            <select name="category">
+                                                <option value="">Select Genre (Optional)</option>
+                                                <option value="Action">Action</option>
+                                                <option value="Comedy">Comedy</option>
+                                                <option value="Drama">Drama</option>
+                                                <option value="Romance">Romance</option>
+                                                <option value="Sci-Fi">Sci-Fi</option>
+                                                <option value="Thriller">Thriller</option>
+                                            </select>
+
+                                            <!-- Top-X -->
+                                            <input 
+                                                type="number" 
+                                                name="top_n"
+                                                placeholder="Number of Recommendations (max 100)"
+                                                min="4"
+                                                max="100"
+                                                value="4"
+                                            >         
+                                
+                                            <button type="submit">Get Recommendations</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                                <div class="h3_banner-right d-none d-lg-flex">
+                                    <div class="inner-item">
+                                        <div class="swiper h3_banner-active">
+                                            <div class="swiper-wrapper ">
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/1.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/2.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/3.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/4.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/5.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/6.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/7.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/8.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/9.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/10.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/11.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/12.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/13.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/14.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/15.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/16.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/17.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/18.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/19.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/20.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="inner-item">
+                                        <div class="swiper h3_banner-active-2">
+                                            <div class="swiper-wrapper ">
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/21.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/22.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/23.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/24.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/25.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/26.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/27.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/28.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/29.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/30.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/31.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/32.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/33.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/3.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/3.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/34.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/35.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/36.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/37.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/38.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/39.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="h3_banner-img">
+                                                        <img src="assets/images/banner/40.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h3_banner-shape d-none d-sm-block">
+                            <img src="assets/images/banner/shape-1.png" alt="Image Not Found" class="h3_banner-shape-1" data-speed="0.8">
+                            <img src="assets/images/banner/shape-2.png" alt="Image Not Found" class="h3_banner-shape-2" data-speed="0.7">
+                            <img src="assets/images/banner/shape-3.png" alt="Image Not Found" class="h3_banner-shape-3" data-speed="0.9">
+                        </div>
+
+   
+                    </section>
+                    <!-- banner area end -->
+
+                    <!-- work area start -->
+                    <section class="h5_work-area pt-130 pb-130" id="work-section" style="display: none;">
+                        <div class="container">
+                            <div class="row mb-30 align-items-end">
+                                <div class="col-xl-6 col-lg-7 col-md-8 col-sm-9">
+                                    <div class="section-area mb-20">
+                                        <h2 class="section-title tp_title_slideup mb-0">Find The Right Photo For Your Projects</h2>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-5 col-md-4 col-sm-3">
+                                    <div class="h5_work-navigation mb-30 tp_fade_left">
+                                        <div class="h5_work-prev"><i class="fa-light fa-angle-left"></i>
+                                        </div>
+                                        <div class="h5_work-next"><i class="fa-light fa-angle-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper h5_work-active tp_fade_bottom">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="h5_work-item">
+                                            <img src="assets/images/banner/1.jpg" alt="">
+                                            <a href="#">Movie Title</a>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="h5_work-item">
+                                            <img src="assets/images/banner/2.jpg" alt="">
+                                            <a href="#">Movie Title</a>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="h5_work-item">
+                                            <img src="assets/images/banner/3.jpg" alt="">
+                                            <a href="#">Movie Title</a>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="h5_work-item">
+                                            <img src="assets/images/banner/4.jpg" alt="">
+                                            <a href="#">Movie Title</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- work area end -->
+
+                    <!-- gallery area start -->
+                    <section class="h5_shop-area pb-130" id="gallery-section" style="display: none;">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-6 col-lg-7 col-md-10">
+                                    <div class="section-area text-center mb-50">
+                                        <h2 class="section-title tp_title_slideup mb-0">Recomended Movies</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper h5_shop-active">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="h5_shop-wrap">
+                                            <div class="row" id="recommendations-gallery">
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/1.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/2.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/3.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/4.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/5.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/6.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/7.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/8.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/9.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/10.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/11.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/12.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="h5_shop-wrap">
+                                            <div class="row">
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/1.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/2.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/3.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/4.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/5.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/6.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/7.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/8.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/9.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/10.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/11.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-md-4 col-sm-6 tp_fade_bottom">
+                                                    <div class="h5_shop-item mb-30">
+                                                        <div class="h5_shop-img">
+                                                            <img src="assets/images/banner/12.jpg" alt="">
+                                                            <div class="h5_shop-premium-icon">
+                                                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="h5_shop-img-icon">
+                                                                <a href="#"><i class="fa-light fa-eye"></i></a>
+                                                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="h5_shop-content">
+                                                            <h5 class="h5_shop-content-title"><a href="#">Movie Title</a></h5>
+                                                            <div class="h5_shop-content-bottom">
+                                                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">Movie Years</a>
+                                                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> Movie Categories</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="h5_shop-pagination pt-25 text-center"></div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- shop area end -->
+
+                </main>
+                <!-- footer area start -->
+                <footer class="h3_footer-area pt-110 pb-105">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="h3_footer-bottom-copyright tp_fade_bottom_footer">
+                                    <p>&copy;2023 Doodle All Rights Reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- footer area end -->
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script> 
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/meanmenu.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollSmoother.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+    <script src="assets/js/chroma.min.js"></script>
+    <script src="assets/js/magnific-popup.min.js"></script>
+    <script src="assets/js/nice-select.min.js"></script>
+    <script src="assets/js/backtotop.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- MovieRec Integration Script -->
+    <script>
+        // MovieRec API Integration
+        (function() {
+            'use strict';
+            
+            const API_BASE_URL = '/api/recommendations';
+            
+            // Handle form submission
+            document.querySelector('form[action="#"]').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const user_id = formData.get('user_id');
+                const category = formData.get('category');
+                const top_n = parseInt(formData.get('top_n')) || 4;
+                
+                // Validate user_id
+                if (!user_id || user_id.toString().trim() === '') {
+                    showErrorModal('Please enter a User ID');
+                    return;
+                }
+                
+                const userIdNum = parseInt(user_id);
+                if (isNaN(userIdNum) || userIdNum < 1) {
+                    showErrorModal('User ID must be a positive number');
+                    return;
+                }
+                
+                // Show loading state
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = 'Loading...';
+                
+                try {
+                    // Call API
+                    const response = await fetch(API_BASE_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            user_id: userIdNum,  // Already validated as positive number
+                            top_n: top_n,
+                            category: (category && category.trim() !== '') ? category : null  // Form uses 'category', backend accepts both
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success && data.recommendations && data.recommendations.length > 0) {
+                        displayRecommendations(data.recommendations, top_n);
+                        // Scroll to recommendations
+                        const workSection = document.getElementById('work-section');
+                        const gallerySection = document.getElementById('gallery-section');
+                        const targetSection = top_n <= 4 ? workSection : gallerySection;
+                        if (targetSection) {
+                            setTimeout(() => {
+                                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 100);
+                        }
+                    } else {
+                        const errorMsg = data.message || 'No recommendations found. Please try a different User ID.';
+                        showErrorModal(errorMsg);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showErrorModal('Error fetching recommendations. Please check if the server is running.');
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }
+            });
+            
+            function displayRecommendations(recommendations, topN) {
+                // Hide both sections first
+                const workSection = document.getElementById('work-section');
+                const gallerySection = document.getElementById('gallery-section');
+                
+                if (workSection) workSection.style.display = 'none';
+                if (gallerySection) gallerySection.style.display = 'none';
+                
+                // Display in Work section if topN <= 4, otherwise in Gallery section
+                if (topN <= 4) {
+                    displayInWorkSection(recommendations);
+                    if (workSection) workSection.style.display = 'block';
+                } else {
+                    displayInGallerySection(recommendations);
+                    if (gallerySection) gallerySection.style.display = 'block';
+                }
+            }
+            
+            function displayInWorkSection(recommendations) {
+                const workSection = document.querySelector('.h5_work-active .swiper-wrapper');
+                if (!workSection) return;
+                
+                workSection.innerHTML = '';
+                
+                recommendations.slice(0, 4).forEach((movie, index) => {
+                    const slide = createMovieSlide(movie, index);
+                    workSection.appendChild(slide);
+                });
+                
+                // Reinitialize Swiper if needed
+                if (window.workSwiper) {
+                    window.workSwiper.update();
+                }
+            }
+            
+            function displayInGallerySection(recommendations) {
+                // Find the gallery container - look for the row inside swiper
+                const galleryRow = document.getElementById('recommendations-gallery');
+                if (galleryRow) {
+                    // Clear existing cards (including default placeholder content)
+                    galleryRow.innerHTML = '';
+                    
+                    // Add new cards
+                    recommendations.forEach((movie, index) => {
+                        const card = createMovieCard(movie, index);
+                        galleryRow.appendChild(card);
+                    });
+                    return;
+                }
+                
+                // Fallback: find the row inside the swiper structure
+                const swiperWrapper = document.querySelector('.h5_shop-active .swiper-wrapper');
+                if (swiperWrapper) {
+                    const slide = swiperWrapper.querySelector('.swiper-slide');
+                    if (slide) {
+                        let row = slide.querySelector('.row');
+                        if (!row) {
+                            // Create row if it doesn't exist
+                            row = document.createElement('div');
+                            row.className = 'row';
+                            slide.querySelector('.h5_shop-wrap').appendChild(row);
+                        }
+                        row.id = 'recommendations-gallery';
+                        row.innerHTML = '';
+                        
+                        recommendations.forEach((movie, index) => {
+                            const card = createMovieCard(movie, index);
+                            row.appendChild(card);
+                        });
+                        return;
+                    }
+                }
+            }
+            
+            function createMovieSlide(movie, index) {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                
+                const imagePath = movie.image_path || 'assets/images/banner/default.png';
+                const title = extractTitle(movie.title);
+                const year = movie.release_year || extractYear(movie.title);
+                
+                slide.innerHTML = `
+                    <div class="h5_work-item" data-movie-id="${movie.movie_id}" style="cursor: pointer;">
+                        <img src="${imagePath}" alt="${title}" style="width: 270px; height: 400px; object-fit: cover;" onerror="this.src='assets/images/banner/default.png'; this.onerror=null;">
+                        <a href="#" class="movie-link">${title}</a>
+                    </div>
+                `;
+                
+                // Add click handler for modal
+                slide.querySelector('.h5_work-item').addEventListener('click', () => {
+                    showMovieModal(movie);
+                });
+                
+                return slide;
+            }
+            
+            function createMovieCard(movie, index) {
+                const card = document.createElement('div');
+                card.className = 'col-xl-3 col-md-4 col-sm-6 tp_fade_bottom';
+                
+                const imagePath = movie.image_path || 'assets/images/banner/default.png';
+                const title = extractTitle(movie.title);
+                const year = movie.release_year || extractYear(movie.title);
+                // Get selected genre from form if available
+                const formGenre = document.querySelector('select[name="category"]')?.value || '';
+                const genres = formatGenres(movie.genres, formGenre);
+                
+                card.innerHTML = `
+                    <div class="h5_shop-item mb-30" data-movie-id="${movie.movie_id}" style="cursor: pointer;">
+                        <div class="h5_shop-img">
+                            <img src="${imagePath}" alt="${title}" style="width: 270px; height: 400px; object-fit: cover;" onerror="this.src='assets/images/banner/default.png'; this.onerror=null;">
+                            <div class="h5_shop-premium-icon">
+                                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
+                                    <path d="M1.26298 14.1223C1.27596 15.2212 1.28029 15.2905 1.37114 15.4635C1.48796 15.6842 1.72591 15.8789 1.94224 15.9481C2.1802 16.0173 18.5862 16.0173 18.8242 15.9481C19.0405 15.8789 19.2785 15.6842 19.3953 15.4635C19.4862 15.2905 19.4905 15.2212 19.5035 14.1223L19.5164 12.9671H10.3832H1.25L1.26298 14.1223Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="h5_shop-img-icon">
+                                <a href="#" class="view-movie"><i class="fa-light fa-eye"></i></a>
+                                <a href="#"><i class="fa-light fa-heart"></i></a>
+                            </div>
+                        </div>
+                        <div class="h5_shop-content">
+                            <h5 class="h5_shop-content-title"><a href="#" class="movie-link">${title}</a></h5>
+                            <div class="h5_shop-content-bottom">
+                                <a href="#" class="h5_shop-content-price h5_shop-content-bottom-link">${year || 'N/A'}</a>
+                                <a href="#" class="h5_shop-content-cart"><i class="fa-light fa-shopping-cart"></i> ${genres}</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click handlers
+                card.querySelector('.h5_shop-item').addEventListener('click', () => {
+                    showMovieModal(movie);
+                });
+                card.querySelector('.view-movie')?.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showMovieModal(movie);
+                });
+                
+                return card;
+            }
+            
+            function showErrorModal(message) {
+                // Create or update error modal
+                let modal = document.getElementById('error-modal');
+                if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = 'error-modal';
+                    modal.className = 'error-modal';
+                    modal.innerHTML = `
+                        <div class="error-modal-overlay"></div>
+                        <div class="error-modal-content">
+                            <button class="error-modal-close">&times;</button>
+                            <div class="error-modal-body">
+                                <div class="error-modal-icon">
+                                    <i class="fa-light fa-exclamation-triangle" style="font-size: 48px; color: #ff6b6b;"></i>
+                                </div>
+                                <h2 class="error-modal-title">Error</h2>
+                                <p class="error-modal-message" id="error-modal-message" style="white-space: pre-line;"></p>
+                                <button class="error-modal-ok">OK</button>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+                    
+                    // Add styles
+                    if (!document.getElementById('error-modal-styles')) {
+                        const style = document.createElement('style');
+                        style.id = 'error-modal-styles';
+                        style.textContent = `
+                            .error-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; }
+                            .error-modal.active { display: flex; align-items: center; justify-content: center; }
+                            .error-modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+                            .error-modal-content { position: relative; background: white; max-width: 500px; width: 90%; border-radius: 10px; padding: 40px 30px; z-index: 10001; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+                            .error-modal-close { position: absolute; top: 10px; right: 10px; font-size: 28px; background: none; border: none; cursor: pointer; color: #999; line-height: 1; padding: 5px; }
+                            .error-modal-close:hover { color: #333; }
+                            .error-modal-body { text-align: center; }
+                            .error-modal-icon { margin-bottom: 20px; }
+                            .error-modal-title { margin: 0 0 15px 0; color: #1B2A52; font-size: 24px; font-weight: 600; }
+                            .error-modal-message { margin: 0 0 30px 0; color: #666; font-size: 16px; line-height: 1.6; text-align: left; }
+                            .error-modal-ok { background: #7D25EC; color: white; border: none; padding: 12px 30px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+                            .error-modal-ok:hover { background: #9425EC; }
+                            @media (max-width: 480px) {
+                                .error-modal-content { padding: 30px 20px; }
+                                .error-modal-title { font-size: 20px; }
+                                .error-modal-message { font-size: 14px; }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    
+                    // Close handlers
+                    modal.querySelector('.error-modal-close').addEventListener('click', () => {
+                        modal.classList.remove('active');
+                    });
+                    modal.querySelector('.error-modal-overlay').addEventListener('click', () => {
+                        modal.classList.remove('active');
+                    });
+                    modal.querySelector('.error-modal-ok').addEventListener('click', () => {
+                        modal.classList.remove('active');
+                    });
+                    
+                    // Close on Escape key
+                    const escapeHandler = function(e) {
+                        if (e.key === 'Escape' && modal.classList.contains('active')) {
+                            modal.classList.remove('active');
+                            document.removeEventListener('keydown', escapeHandler);
+                        }
+                    };
+                    document.addEventListener('keydown', escapeHandler);
+                }
+                
+                // Set message and show
+                document.getElementById('error-modal-message').textContent = message;
+                modal.classList.add('active');
+            }
+            
+            function showMovieModal(movie) {
+                // Create or update modal
+                let modal = document.getElementById('movie-modal');
+                if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = 'movie-modal';
+                    modal.className = 'movie-modal';
+                    modal.innerHTML = `
+                        <div class="movie-modal-overlay"></div>
+                        <div class="movie-modal-content">
+                            <button class="movie-modal-close">&times;</button>
+                            <div class="movie-modal-body">
+                                <div class="movie-modal-poster">
+                                    <img id="modal-poster" src="" alt="">
+                                </div>
+                                <div class="movie-modal-info">
+                                    <h2 id="modal-title"></h2>
+                                    <div id="modal-meta"></div>
+                                    <div id="modal-genres"></div>
+                                    <div id="modal-similar-users"></div>
+                                    <div id="modal-overview-section">
+                                        <h3 style="margin-top: 20px; margin-bottom: 10px;">Overview</h3>
+                                        <p id="modal-overview"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+                    
+                    // Add styles
+                    if (!document.getElementById('movie-modal-styles')) {
+                        const style = document.createElement('style');
+                        style.id = 'movie-modal-styles';
+                        style.textContent = `
+                            .movie-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; }
+                            .movie-modal.active { display: flex; align-items: center; justify-content: center; }
+                            .movie-modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+                            .movie-modal-content { position: relative; background: white; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; border-radius: 10px; padding: 30px; z-index: 10001; }
+                            .movie-modal-close { position: absolute; top: 10px; right: 10px; font-size: 30px; background: none; border: none; cursor: pointer; color: #333; }
+                            .movie-modal-body { display: flex; gap: 20px; }
+                            .movie-modal-poster img { max-width: 340px; width: 100%; border-radius: 8px; }
+                            .movie-modal-info h2 { margin-top: 0; }
+                            @media (max-width: 768px) {
+                                .movie-modal-body { flex-direction: column; }
+                                .movie-modal-poster img { max-width: 100%; }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    
+                    // Close handlers
+                    modal.querySelector('.movie-modal-close').addEventListener('click', () => {
+                        modal.classList.remove('active');
+                    });
+                    modal.querySelector('.movie-modal-overlay').addEventListener('click', () => {
+                        modal.classList.remove('active');
+                    });
+                }
+                
+                // Populate modal
+                const imagePath = movie.image_path || 'assets/images/banner/default.png';
+                const posterImg = document.getElementById('modal-poster');
+                posterImg.src = imagePath;
+                posterImg.style.width = '340px';
+                posterImg.style.height = '490px';
+                posterImg.style.objectFit = 'cover';
+                posterImg.onerror = function() {
+                    this.src = 'assets/images/banner/default.png';
+                    this.onerror = null;
+                };
+                document.getElementById('modal-title').textContent = extractTitle(movie.title);
+                document.getElementById('modal-meta').innerHTML = `
+                    <p><strong>Release Year:</strong> ${movie.release_year || extractYear(movie.title) || 'N/A'}</p>
+                    <p><strong>Predicted Rating:</strong> ${movie.predicted_rating.toFixed(2)}/5.0</p>
+                `;
+                document.getElementById('modal-genres').innerHTML = `<p><strong>Genres:</strong> ${formatAllGenres(movie.genres)}</p>`;
+                
+                // Display similar users who rated this movie
+                const similarUsersDiv = document.getElementById('modal-similar-users');
+                if (movie.similar_user_ids && movie.similar_user_ids.length > 0) {
+                    const usersList = movie.similar_user_ids.join(', ');
+                    similarUsersDiv.innerHTML = `<p><strong>Similar Users Who Rated This:</strong> ${usersList}</p>`;
+                } else {
+                    similarUsersDiv.innerHTML = '<p><strong>Similar Users Who Rated This:</strong> Not available</p>';
+                }
+                
+                document.getElementById('modal-overview').textContent = movie.overview || 'No overview available.';
+                
+                // Show modal
+                modal.classList.add('active');
+            }
+            
+            function extractTitle(fullTitle) {
+                // Remove year from title: "Movie Title (1994)" -> "Movie Title"
+                return fullTitle.replace(/\s*\(\d{4}\)\s*$/, '').trim();
+            }
+            
+            function extractYear(fullTitle) {
+                // Extract year from title: "Movie Title (1994)" -> "1994"
+                const match = fullTitle.match(/\((\d{4})\)/);
+                return match ? match[1] : null;
+            }
+            
+            function formatGenres(genresString, selectedGenre) {
+                if (!genresString) return 'N/A';
+                
+                const genres = genresString.split('|').filter(g => g && g !== '(no genres listed)');
+                if (genres.length === 0) return 'N/A';
+                
+                // Put selected genre first if it exists
+                if (selectedGenre) {
+                    const selected = genres.find(g => g.toLowerCase() === selectedGenre.toLowerCase());
+                    if (selected) {
+                        genres.splice(genres.indexOf(selected), 1);
+                        genres.unshift(selected);
+                    }
+                }
+                
+                // Return first 2-3 genres
+                return genres.slice(0, 3).join(', ');
+            }
+            
+            function formatAllGenres(genresString) {
+                if (!genresString) return 'N/A';
+                const genres = genresString.split('|').filter(g => g && g !== '(no genres listed)');
+                return genres.length > 0 ? genres.join(', ') : 'N/A';
+            }
+        })();
+    </script>
+
+  </body>
+</html>

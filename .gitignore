@@ -1,0 +1,38 @@
+# Dataset files (large files, should not be committed)
+dataset/
+*.csv
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Downloaded movie posters (large files, should not be committed)
+movie_posters/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.local
+
