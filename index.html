@@ -19,6 +19,55 @@
     <link rel="stylesheet" href="assets/css/nice-select.css"> 
     <link rel="stylesheet" href="assets/css/backtotop.css"> 
     <link rel="stylesheet" href="assets/css/main.css"> 
+    
+    <!-- Image Error Handling Styles -->
+    <style>
+        /* Fix missing close.png cursor - override CSS that references non-existent images */
+        .offcanvas-overlay {
+            cursor: default !important;
+        }
+        
+        .offwrap {
+            cursor: default !important;
+        }
+        
+        /* Ensure recommendation images maintain size even on error */
+        .h5_work-item img,
+        .h5_shop-img img {
+            min-width: 270px;
+            min-height: 400px;
+            max-width: 270px;
+            max-height: 400px;
+            background-color: #f0f0f0;
+            background-image: url('assets/images/banner/default.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        /* Prevent layout breaking when images fail */
+        .h5_shop-img {
+            min-width: 270px;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .h5_work-item {
+            min-width: 270px;
+            min-height: 400px;
+        }
+        
+        /* Modal poster fallback */
+        .movie-modal-poster img {
+            min-width: 340px;
+            min-height: 490px;
+            background-color: #f0f0f0;
+            background-image: url('assets/images/banner/default.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
 
   </head>
   <body>
@@ -115,12 +164,16 @@
                                             <!-- Category Dropdown -->
                                             <select name="category">
                                                 <option value="">Select Genre (Optional)</option>
+                                                <option value="Adventure">Adventure</option>
                                                 <option value="Action">Action</option>
                                                 <option value="Comedy">Comedy</option>
+                                                <option value="Crime">Crime</option>
                                                 <option value="Drama">Drama</option>
+                                                <option value="Horror">Horror</option>
                                                 <option value="Romance">Romance</option>
                                                 <option value="Sci-Fi">Sci-Fi</option>
                                                 <option value="Thriller">Thriller</option>
+                                                <option value="War">War</option>
                                             </select>
 
                                             <!-- Top-X -->
@@ -1074,6 +1127,25 @@
             'use strict';
             
             const API_BASE_URL = '/api/recommendations';
+            const DEFAULT_IMAGE = 'assets/images/banner/default.png';
+            
+            // Global image error handler - catches all image load failures
+            document.addEventListener('error', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    const img = e.target;
+                    // Only replace if it's not already the default image
+                    if (img.src && !img.src.includes('default.png') && !img.src.includes('data:')) {
+                        img.src = DEFAULT_IMAGE;
+                        img.onerror = null; // Prevent infinite loop
+                        // Ensure dimensions are maintained
+                        if (!img.style.width) {
+                            img.style.width = '270px';
+                            img.style.height = '400px';
+                        }
+                        img.style.objectFit = 'cover';
+                    }
+                }
+            }, true); // Use capture phase to catch errors early
             
             // Handle form submission
             document.querySelector('form[action="#"]').addEventListener('submit', async function(e) {
@@ -1220,13 +1292,13 @@
                 const slide = document.createElement('div');
                 slide.className = 'swiper-slide';
                 
-                const imagePath = movie.image_path || 'assets/images/banner/default.png';
+                const imagePath = movie.image_path || DEFAULT_IMAGE;
                 const title = extractTitle(movie.title);
                 const year = movie.release_year || extractYear(movie.title);
                 
                 slide.innerHTML = `
                     <div class="h5_work-item" data-movie-id="${movie.movie_id}" style="cursor: pointer;">
-                        <img src="${imagePath}" alt="${title}" style="width: 270px; height: 400px; object-fit: cover;" onerror="this.src='assets/images/banner/default.png'; this.onerror=null;">
+                        <img src="${imagePath}" alt="${title}" style="width: 270px; height: 400px; object-fit: cover; display: block;" onerror="this.src='${DEFAULT_IMAGE}'; this.onerror=null; this.style.width='270px'; this.style.height='400px'; this.style.objectFit='cover';">
                         <a href="#" class="movie-link">${title}</a>
                     </div>
                 `;
@@ -1243,7 +1315,7 @@
                 const card = document.createElement('div');
                 card.className = 'col-xl-3 col-md-4 col-sm-6 tp_fade_bottom';
                 
-                const imagePath = movie.image_path || 'assets/images/banner/default.png';
+                const imagePath = movie.image_path || DEFAULT_IMAGE;
                 const title = extractTitle(movie.title);
                 const year = movie.release_year || extractYear(movie.title);
                 // Get selected genre from form if available
@@ -1252,8 +1324,8 @@
                 
                 card.innerHTML = `
                     <div class="h5_shop-item mb-30" data-movie-id="${movie.movie_id}" style="cursor: pointer;">
-                        <div class="h5_shop-img">
-                            <img src="${imagePath}" alt="${title}" style="width: 270px; height: 400px; object-fit: cover;" onerror="this.src='assets/images/banner/default.png'; this.onerror=null;">
+                        <div class="h5_shop-img" style="width: 270px; height: 400px; overflow: hidden;">
+                            <img src="${imagePath}" alt="${title}" style="width: 270px; height: 400px; object-fit: cover; display: block;" onerror="this.src='${DEFAULT_IMAGE}'; this.onerror=null; this.style.width='270px'; this.style.height='400px'; this.style.objectFit='cover';">
                             <div class="h5_shop-premium-icon">
                                 <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
@@ -1423,15 +1495,19 @@
                 }
                 
                 // Populate modal
-                const imagePath = movie.image_path || 'assets/images/banner/default.png';
+                const imagePath = movie.image_path || DEFAULT_IMAGE;
                 const posterImg = document.getElementById('modal-poster');
                 posterImg.src = imagePath;
                 posterImg.style.width = '340px';
                 posterImg.style.height = '490px';
                 posterImg.style.objectFit = 'cover';
+                posterImg.style.display = 'block';
                 posterImg.onerror = function() {
-                    this.src = 'assets/images/banner/default.png';
+                    this.src = DEFAULT_IMAGE;
                     this.onerror = null;
+                    this.style.width = '340px';
+                    this.style.height = '490px';
+                    this.style.objectFit = 'cover';
                 };
                 document.getElementById('modal-title').textContent = extractTitle(movie.title);
                 document.getElementById('modal-meta').innerHTML = `
