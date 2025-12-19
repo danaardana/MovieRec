@@ -47,6 +47,11 @@ MovieRec/
 │   │   ├── collaborative_filtering.py  # Main CF logic
 │   │   ├── similarity.py                # Pearson correlation
 │   │   └── prediction.py                # Rating prediction
+│   ├── evaluator/                       # Performance evaluation
+│   │   ├── __init__.py
+│   │   ├── metrics.py                   # Metric calculations
+│   │   ├── evaluator.py                 # Standard evaluator
+│   │   └── fast_evaluator.py            # Fast evaluator (optimized)
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── image_downloader.py          # Image fetching
@@ -58,7 +63,9 @@ MovieRec/
 │   ├── movies.csv
 │   └── README.txt
 ├── movie_posters/                        # Downloaded images
+├── evaluation_results/                   # Evaluation output (generated)
 ├── index.html                            # Frontend interface
+├── evaluate_system.py                    # Evaluation script
 ├── .gitignore                           # Git ignore rules (excludes dataset/)
 └── README_PROJECT.md                     # This file
 ```
@@ -298,6 +305,46 @@ def recommendations():
 | `backend/recommender/prediction.py` | Rating prediction from similar users |
 | `backend/utils/image_downloader.py` | Downloads movie poster images |
 | `backend/utils/api_client.py` | Handles TMDB API calls |
+| `backend/evaluator/` | Performance evaluation modules |
+| `evaluate_system.py` | Evaluation script |
+
+---
+
+## Performance Evaluation
+
+The system includes a comprehensive evaluation module for quantitative performance assessment.
+
+### Evaluation Features
+
+- **Rating Prediction Metrics**: MAE (Mean Absolute Error), RMSE (Root Mean Squared Error)
+- **Ranking Metrics**: Precision@K, Recall@K, F1@K, NDCG@K
+- **Diversity Metrics**: Intra-list diversity, genre coverage
+- **Additional Metrics**: Coverage, cold start rate
+
+### Usage
+
+```bash
+# Fast evaluation (recommended, 10-100x faster)
+python evaluate_system.py --sample-users 100 --top-n 10
+
+# Standard evaluation (more accurate but slower)
+python evaluate_system.py --standard-mode
+```
+
+### Output Formats
+
+Evaluation results are saved in multiple formats:
+- **JSON**: Structured data for programmatic access
+- **CSV**: Tabular metrics for spreadsheet analysis
+- **LOG**: Detailed log file with timestamps
+- **TXT**: Human-readable text format
+
+Results are saved to `evaluation_results/` directory with timestamps.
+
+For detailed documentation, see:
+- **README_EVALUATION.md**: Complete evaluation documentation
+- **QUICK_START_EVALUATION.md**: Quick start guide
+- **PERFORMANCE_OPTIMIZATION.md**: Performance optimization details
 
 ---
 
@@ -324,6 +371,8 @@ This project demonstrates:
 - **Data Preprocessing**: Handling large-scale datasets
 - **System Integration**: Frontend-backend integration
 - **API Integration**: External API usage for metadata
+- **Performance Evaluation**: Comprehensive evaluation with multiple metrics
+- **Optimization**: Fast evaluation mode for efficient experimentation
 
 **Suitable for**: University courses on Recommender Systems, Machine Learning, or Web Development.
 

@@ -23,6 +23,7 @@ MovieRec is an educational recommender system that demonstrates **User-Based Col
 - ✅ **Cold Start Solution**: Popular movies fallback for users with few ratings
 - ✅ Automatic image downloading
 - ✅ **Notification Bar**: Real-time feedback for cold start and errors
+- ✅ **Performance Evaluation**: Comprehensive numerical evaluation with multiple metrics
 - ✅ Clean, modular code structure
 
 ## Quick Start
@@ -51,6 +52,11 @@ Then open browser: `http://localhost:5000`
 python backend/main.py --user 24 --top-n 4
 ```
 
+**Or evaluate system performance**:
+```bash
+python evaluate_system.py --sample-users 100 --top-n 10
+```
+
 ### 3. Use in Code
 
 ```python
@@ -77,6 +83,10 @@ MovieRec/
 │   │   ├── collaborative_filtering.py
 │   │   ├── similarity.py
 │   │   └── prediction.py
+│   ├── evaluator/              # Performance evaluation modules
+│   │   ├── metrics.py
+│   │   ├── evaluator.py
+│   │   └── fast_evaluator.py
 │   ├── utils/                  # Utility modules
 │   │   ├── image_downloader.py
 │   │   └── api_client.py
@@ -84,7 +94,9 @@ MovieRec/
 │   └── main.py                 # Main API endpoint
 ├── dataset/                    # MovieLens dataset (excluded in .gitignore)
 ├── movie_posters/              # Downloaded images
+├── evaluation_results/         # Evaluation output (generated)
 ├── index.html                  # Frontend interface
+├── evaluate_system.py          # Evaluation script
 ├── .gitignore                  # Git ignore rules
 └── README files                # Documentation
 ```
@@ -95,9 +107,12 @@ MovieRec/
 |----------|---------|
 | **README_PROJECT.md** | System architecture, integration guide, application flow |
 | **README_COLLABORATIVE_FILTERING.md** | Technical CF documentation, algorithm explanation |
+| **README_EVALUATION.md** | Performance evaluation documentation, metrics explanation |
 | **README_UTILS.md** | Utility modules documentation |
 | **STRUCTURE.md** | Complete file structure overview |
 | **QUICK_START.md** | Quick setup and usage guide |
+| **QUICK_START_EVALUATION.md** | Quick guide for running evaluations |
+| **PERFORMANCE_OPTIMIZATION.md** | Performance optimization details for evaluation |
 
 ## Features
 
@@ -115,6 +130,8 @@ MovieRec/
 - **Similar User IDs**: Shows which similar users rated each movie (in modal)
 - **Error Handling**: User-friendly error modals for actual errors (cold start uses notification bar only, no modal)
 - **User Inclusion**: Requested users are always included in dataset, even if not in top N most active users
+- **Performance Evaluation**: Comprehensive numerical evaluation with metrics (MAE, RMSE, Precision, Recall, F1, NDCG, Diversity, Coverage)
+- **Fast Evaluation Mode**: Optimized evaluation that only predicts test movies (10-100x faster)
 - **Memory Efficient**: Handles large datasets efficiently
 - **Modular Design**: Clean separation of concerns
 - **No RuntimeWarnings**: Fixed numpy division warnings in correlation calculation

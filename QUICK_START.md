@@ -46,6 +46,35 @@ recommendations = get_recommendations(
 # - release_year
 ```
 
+## Evaluate System Performance
+
+### Quick Evaluation (Recommended)
+
+```bash
+# Fast evaluation on 100 users
+python evaluate_system.py --sample-users 100 --top-n 10
+```
+
+### Evaluation with Custom Settings
+
+```bash
+# Evaluate on 50 users with top-5 recommendations
+python evaluate_system.py --sample-users 50 --top-n 5
+
+# Skip diversity calculation for even faster evaluation
+python evaluate_system.py --sample-users 100 --skip-diversity
+```
+
+### View Results
+
+Results are saved to `evaluation_results/` directory in multiple formats:
+- `.json` - Structured data
+- `.csv` - Tabular metrics
+- `.log` - Detailed log
+- `.txt` - Human-readable format
+
+For more details, see **README_EVALUATION.md** or **QUICK_START_EVALUATION.md**.
+
 ## Frontend Integration
 
 The `index.html` file is ready for integration. Connect it to the backend API:
@@ -78,6 +107,7 @@ fetch('/api/recommendations', {
 
 - **Main Project**: See `README_PROJECT.md`
 - **CF Technical**: See `README_COLLABORATIVE_FILTERING.md`
+- **Evaluation**: See `README_EVALUATION.md` and `QUICK_START_EVALUATION.md`
 - **Utilities**: See `README_UTILS.md`
 - **Structure**: See `STRUCTURE.md`
 

@@ -36,4 +36,10 @@ movie_posters/
 .env
 .env.local
 
+# Microsoft Office temporary files
+~$*
+~$*.pptx
+~$*.docx
+~$*.xlsx
+
 .pptx
