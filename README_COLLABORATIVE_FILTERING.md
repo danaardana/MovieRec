@@ -170,7 +170,7 @@ Prediction = (0.9×5.0 + 0.7×4.0 + 0.5×3.0) / (0.9 + 0.7 + 0.5)
 
 **Location**: `backend/recommender/collaborative_filtering.py`
 
-**Signature**: `generate_recommendations(target_user_id: int, user_movie_matrix: pd.DataFrame, movies: pd.DataFrame, top_n: int = 4, genre_filter: str = None, min_common_movies: int = 5, top_k_similar: int = 50) -> List[Tuple[int, str, float, str, List[int]]]`
+**Signature**: `generate_recommendations(target_user_id: int, user_movie_matrix: pd.DataFrame, movies: pd.DataFrame, top_n: int = 4, genre_filter: str = None, min_common_movies: int = 5, top_k_similar: int = 50) -> Tuple[List[Tuple[int, str, float, str, List[int]]], bool]`
 
 **Purpose**: Orchestrates the entire recommendation process.
 
@@ -178,13 +178,23 @@ Prediction = (0.9×5.0 + 0.7×4.0 + 0.5×3.0) / (0.9 + 0.7 + 0.5)
 1. Validate user exists
 2. Get rated movies → exclude from recommendations
 3. Find similar users (`find_similar_users()`)
-4. Predict ratings for unrated movies (`predict_rating()`)
-5. **Get similar users who rated each movie** (`get_similar_users_who_rated()`)
-6. **Apply genre filter AFTER prediction** (if specified)
-7. Sort by predicted rating (highest first)
-8. Return top-N as `[(movie_id, title, rating, genres, similar_user_ids), ...]`
+4. **If no similar users found** → Use `get_popular_movies_fallback()` (cold start solution)
+5. Predict ratings for unrated movies (`predict_rating()`)
+6. **Get similar users who rated each movie** (`get_similar_users_who_rated()`)
+7. **Apply genre filter AFTER prediction** (if specified)
+8. Sort by predicted rating (highest first)
+9. **If no predictions generated** → Use `get_popular_movies_fallback()` (cold start solution)
+10. Return `(recommendations, is_cold_start)` tuple
 
-**New Feature**: Returns similar user IDs who rated each recommended movie (for display in modal)
+**Return Value**: 
+- `recommendations`: List of tuples `[(movie_id, title, rating, genres, similar_user_ids), ...]`
+- `is_cold_start`: Boolean indicating if popular movies fallback was used
+
+**Cold Start Fallback**: 
+- When no similar users are found, automatically falls back to popular movies by average rating
+- Excludes movies the user has already rated
+- Respects genre filter if specified
+- Returns empty `similar_user_ids` list (not applicable for popular movies)
 
 **Genre Filtering**:
 ```python
@@ -216,15 +226,21 @@ if genre_filter and genre_filter.lower() not in movie_genres.lower():
    - Can recommend new movies if similar users rated them
    - Doesn't need movie content features
 
+4. **Cold Start Solution Implemented**
+   - Falls back to popular movies when no similar users found
+   - Ensures all users get recommendations, even with few ratings
+   - Popular movies are sorted by average rating (minimum 10 ratings required)
+
 4. **Captures User Preferences**
    - Learns from actual user behavior
    - Adapts to different user tastes
 
 ### Limitations
 
-1. **Cold Start for Users**
-   - New users with few ratings get poor recommendations
-   - Need sufficient rating history
+1. **Cold Start for Users** ✅ **SOLVED**
+   - ~~New users with few ratings get poor recommendations~~ → **Fixed with popular movies fallback**
+   - ~~Need sufficient rating history~~ → **System now provides recommendations even with no similar users**
+   - **Solution**: When no similar users found, automatically shows top-rated popular movies
 
 2. **Scalability Issues**
    - O(n²) complexity for similarity computation

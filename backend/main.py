@@ -25,7 +25,7 @@ def get_recommendations(user_id: int,
                        max_users: int = 2000,
                        max_movies: int = 2000,
                        download_images: bool = True,
-                       image_dir: str = 'movie_posters') -> List[Dict]:
+                       image_dir: str = 'movie_posters') -> Tuple[List[Dict], bool]:
     """
     Get movie recommendations for a user.
     
@@ -43,25 +43,28 @@ def get_recommendations(user_id: int,
         image_dir: Directory where images are stored
     
     Returns:
-        List of dictionaries, each containing:
-        {
-            'movie_id': int,
-            'title': str,
-            'predicted_rating': float,
-            'genres': str,
-            'image_path': str or None,
-            'overview': str or None,
-            'release_year': str or None
-        }
+        Tuple of (recommendations, is_cold_start):
+        - recommendations: List of dictionaries, each containing:
+          {
+              'movie_id': int,
+              'title': str,
+              'predicted_rating': float,
+              'genres': str,
+              'image_path': str or None,
+              'overview': str or None,
+              'release_year': str or None,
+              'similar_user_ids': List[int]
+          }
+        - is_cold_start: Boolean indicating if popular movies fallback was used
     """
-    # Load data
-    ratings, movies = load_data(ratings_path, movies_path, max_users=max_users, max_movies=max_movies)
+    # Load data (include requested user even if not in top N)
+    ratings, movies = load_data(ratings_path, movies_path, max_users=max_users, max_movies=max_movies, required_user_id=user_id)
     
     # Create user-movie matrix
     user_movie_matrix = create_user_movie_matrix(ratings, use_sparse=True)
     
     # Generate recommendations
-    recommendations = generate_recommendations(
+    recommendations, is_cold_start = generate_recommendations(
         target_user_id=user_id,
         user_movie_matrix=user_movie_matrix,
         movies=movies,
@@ -72,7 +75,7 @@ def get_recommendations(user_id: int,
     )
     
     if not recommendations:
-        return []
+        return [], False
     
     # Download images if requested
     image_paths = {}
@@ -125,7 +128,7 @@ def get_recommendations(user_id: int,
         }
         results.append(result)
     
-    return results
+    return results, is_cold_start
 
 
 if __name__ == '__main__':
@@ -139,11 +142,14 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
     
-    recommendations = get_recommendations(
+    recommendations, is_cold_start = get_recommendations(
         user_id=args.user,
         top_n=args.top_n,
         genre=args.genre
     )
+    
+    if is_cold_start:
+        print("\n⚠️  Cold Start: Using popular movies fallback (no similar users found)")
     
     print(f"\nFound {len(recommendations)} recommendations:")
     for rec in recommendations:

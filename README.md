@@ -20,7 +20,9 @@ MovieRec is an educational recommender system that demonstrates **User-Based Col
 - ✅ Pearson Correlation for similarity
 - ✅ Explicit ratings-based recommendations
 - ✅ Genre filtering support
+- ✅ **Cold Start Solution**: Popular movies fallback for users with few ratings
 - ✅ Automatic image downloading
+- ✅ **Notification Bar**: Real-time feedback for cold start and errors
 - ✅ Clean, modular code structure
 
 ## Quick Start
@@ -106,10 +108,13 @@ MovieRec/
 - **Top-N Recommendations**: Configurable number of recommendations
 
 ### Additional Features
+- **Cold Start Solution**: Automatically falls back to popular movies when no similar users are found (solves cold start problem)
+- **Notification Bar**: Non-intrusive notifications for cold start events and errors (auto-dismisses after 5-8 seconds)
 - **Image Downloading**: Automatic poster image fetching from TMDB (270x400 for cards, 340x490 for modal)
 - **Movie Metadata**: Overview and details from external API
 - **Similar User IDs**: Shows which similar users rated each movie (in modal)
-- **Error Handling**: User-friendly error modals with available User ID suggestions
+- **Error Handling**: User-friendly error modals for actual errors (cold start uses notification bar only, no modal)
+- **User Inclusion**: Requested users are always included in dataset, even if not in top N most active users
 - **Memory Efficient**: Handles large datasets efficiently
 - **Modular Design**: Clean separation of concerns
 - **No RuntimeWarnings**: Fixed numpy division warnings in correlation calculation
@@ -138,8 +143,13 @@ MovieRec/
 The `index.html` file contains the frontend interface with:
 
 - **Banner Section**: Input form (User ID, Genre, Top-N)
-- **Work Section**: Displays Top-4 recommendations (270x400 card images)
-- **Gallery Section**: Displays more than 4 recommendations (270x400 card images)
+- **Notification Bar**: Shows info/error notifications at the top (auto-dismisses after 5-8 seconds)
+  - **Cold start**: Shows terminal-style message "Warning: No similar users found. Using popular movies fallback (cold start solution)." (info type, no error modal)
+  - **Errors**: Shows error messages (error type, shows error modal for actual errors)
+  - Manual close button available
+  - Color-coded: purple (info), red (error), green (success), yellow (warning)
+- **Work Section**: Displays recommendations when Top-N < 6 (1-5 recommendations, 270x400 card images)
+- **Gallery Section**: Displays recommendations when Top-N ≥ 6 (6+ recommendations, 270x400 card images)
 - **Modal Popup**: Detailed movie information including:
   - Movie poster (340x490)
   - Title, release year, predicted rating
@@ -148,6 +158,11 @@ The `index.html` file contains the frontend interface with:
   - **Overview** section with movie description
 
 **Fully Integrated**: Form automatically connects to Flask API at `/api/recommendations`
+
+**Cold Start Handling**: 
+- When a user has few ratings (e.g., User ID 1 or 2), the system automatically shows popular movies instead of failing
+- Shows notification bar only (no error modal) with terminal-style message
+- All users are included in dataset even if not in top N most active users (prevents "user not found" errors)
 
 ## Academic Context
 

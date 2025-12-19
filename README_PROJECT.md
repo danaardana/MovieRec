@@ -82,10 +82,12 @@ When a request is received:
 1. **Data Loading** (`data_loader.py`)
    - Loads ratings and movie data from CSV files
    - Creates user-movie rating matrix
-   - Filters data for memory efficiency (if needed)
+   - Filters to top N most active users for memory efficiency
+   - **Always includes requested user** even if not in top N (ensures users like 1, 2 work)
 
 2. **Collaborative Filtering** (`recommender/collaborative_filtering.py`)
    - Finds similar users using Pearson Correlation
+   - **Cold Start Fallback**: If no similar users found, uses popular movies by average rating
    - Predicts ratings for unrated movies
    - Generates ranked recommendation list
    - Applies genre filter (if specified) **after** prediction
@@ -102,28 +104,45 @@ When a request is received:
 
 ### 3. Response Format
 
-The backend returns a JSON array of recommendations:
+The backend returns a JSON response with recommendations and metadata:
 
 ```json
-[
-  {
-    "movie_id": 123,
-    "title": "The Shawshank Redemption (1994)",
-    "predicted_rating": 4.5,
-    "genres": "Drama|Crime",
-    "image_path": "movie_posters/The_Shawshank_Redemption_(1994).jpg",
-    "overview": "Two imprisoned men bond over a number of years...",
-    "release_year": "1994",
-    "similar_user_ids": [189614, 48766, 207216]
-  },
-  ...
-]
+{
+  "success": true,
+  "recommendations": [
+    {
+      "movie_id": 123,
+      "title": "The Shawshank Redemption (1994)",
+      "predicted_rating": 4.5,
+      "genres": "Drama|Crime",
+      "image_path": "movie_posters/The_Shawshank_Redemption_(1994).jpg",
+      "overview": "Two imprisoned men bond over a number of years...",
+      "release_year": "1994",
+      "similar_user_ids": [189614, 48766, 207216]
+    },
+    ...
+  ],
+  "is_cold_start": false
+}
 ```
+
+**Response Fields**:
+- `success`: Boolean indicating if request was successful
+- `recommendations`: Array of movie recommendation objects
+- `is_cold_start`: Boolean indicating if popular movies fallback was used (true) or normal CF was used (false)
 
 ### 4. Frontend Display
 
-- **Work Section**: Displays Top-4 recommendations (when Top-N = 4) with 270x400 card images
-- **Gallery Section**: Displays more than 4 recommendations (when Top-N > 4) with 270x400 card images
+- **Notification Bar**: 
+  - Appears at the top when cold start fallback is used or errors occur
+  - **Cold start**: Shows terminal-style message "Warning: No similar users found for user X. Using popular movies fallback (cold start solution)." (info type, no error modal)
+  - **Errors**: Shows error notifications for validation/API errors (error type, shows error modal)
+  - Auto-dismisses after 5-8 seconds (8s for info, 5s for errors)
+  - Manual close button available
+  - Color-coded: purple (info), red (error), green (success), yellow (warning)
+  - **Important**: Cold start cases only show notification bar, NOT error modal
+- **Work Section**: Displays recommendations when Top-N < 6 (1-5 recommendations) with 270x400 card images
+- **Gallery Section**: Displays recommendations when Top-N ≥ 6 (6+ recommendations) with 270x400 card images
 - **Modal Popup**: Shows detailed movie information when a card is clicked:
   - Movie poster (340x490)
   - Title, release year, predicted rating
@@ -239,6 +258,32 @@ def recommendations():
 - Clear separation of concerns
 - Easier to test and maintain
 - Can be replaced/swapped without affecting CF algorithm
+
+### 4. Cold Start Fallback
+
+**Decision**: When no similar users are found, fall back to popular movies by average rating.
+
+**Rationale**:
+- Solves the cold start problem for new users or users with few ratings
+- Ensures all users get recommendations, improving user experience
+- Popular movies are a reasonable default when personalized recommendations aren't possible
+- Maintains the same response format, so frontend doesn't need special handling
+
+**User Experience**:
+- Shows notification bar only (no error modal) to avoid alarming users
+- Notification displays terminal-style message matching backend output: "Warning: No similar users found for user X. Using popular movies fallback (cold start solution)."
+- Recommendations are still provided (popular movies), so user experience is seamless
+
+### 5. User Inclusion Guarantee
+
+**Decision**: Always include requested user in dataset, even if not in top N most active users.
+
+**Rationale**:
+- Users like 1, 2, etc. may not be in top 2000 most active users
+- But they exist in the dataset and should work
+- Prevents "user not found" errors for valid user IDs
+- Only adds one extra user, minimal memory impact
+- Implemented via `required_user_id` parameter in `load_data()`
 
 ---
 

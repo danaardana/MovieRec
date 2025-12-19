@@ -10,7 +10,8 @@ from typing import Tuple, Optional
 
 def load_data(ratings_path: str, movies_path: str, 
               max_users: Optional[int] = None, 
-              max_movies: Optional[int] = None) -> Tuple[pd.DataFrame, pd.DataFrame]:
+              max_movies: Optional[int] = None,
+              required_user_id: Optional[int] = None) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Load ratings and movies data from CSV files.
     
@@ -19,6 +20,7 @@ def load_data(ratings_path: str, movies_path: str,
         movies_path: Path to the movies.csv file
         max_users: Maximum number of users to load (None for all). Filters to most active users.
         max_movies: Maximum number of movies to load (None for all). Filters to most rated movies.
+        required_user_id: Optional user ID that must be included even if not in top N users.
     
     Returns:
         Tuple of (ratings DataFrame, movies DataFrame)
@@ -32,9 +34,21 @@ def load_data(ratings_path: str, movies_path: str,
     if max_users is not None and max_users > 0:
         print(f"Filtering to top {max_users} most active users...")
         user_rating_counts = ratings['userId'].value_counts()
-        top_users = user_rating_counts.head(max_users).index
+        top_users = user_rating_counts.head(max_users).index.tolist()
+        
+        # If required_user_id is specified and exists in dataset, ensure it's included
+        if required_user_id is not None:
+            if required_user_id in ratings['userId'].values:
+                if required_user_id not in top_users:
+                    print(f"User {required_user_id} exists in dataset but not in top {max_users}. Including anyway...")
+                    top_users.append(required_user_id)
+                else:
+                    print(f"User {required_user_id} is already in top {max_users} users.")
+            else:
+                print(f"Warning: User {required_user_id} not found in dataset.")
+        
         ratings = ratings[ratings['userId'].isin(top_users)]
-        print(f"Filtered to {len(ratings)} ratings from {max_users} users")
+        print(f"Filtered to {len(ratings)} ratings from {len(set(top_users))} users")
     
     # Filter to most rated movies if max_movies is specified
     if max_movies is not None and max_movies > 0:

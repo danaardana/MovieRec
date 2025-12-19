@@ -31,13 +31,22 @@
             cursor: default !important;
         }
         
-        /* Ensure recommendation images maintain size even on error */
+        /* Ensure recommendation images maintain portrait aspect ratio (2:3) */
+        .h5_work-item,
+        .h5_shop-img {
+            width: 270px;
+            aspect-ratio: 2 / 3; /* Portrait ratio for movie posters */
+            position: relative;
+            overflow: hidden;
+        }
+        
         .h5_work-item img,
         .h5_shop-img img {
-            min-width: 270px;
-            min-height: 400px;
-            max-width: 270px;
-            max-height: 400px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
             background-color: #f0f0f0;
             background-image: url('assets/images/banner/default.png');
             background-size: cover;
@@ -45,16 +54,31 @@
             background-repeat: no-repeat;
         }
         
-        /* Prevent layout breaking when images fail */
+        /* Ensure containers maintain portrait aspect ratio */
+        .h5_work-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
         .h5_shop-img {
-            min-width: 270px;
-            min-height: 400px;
             position: relative;
         }
         
-        .h5_work-item {
-            min-width: 270px;
-            min-height: 400px;
+        /* Ensure Swiper slides maintain portrait aspect ratio */
+        .h5_work-active .swiper-slide {
+            height: auto;
+        }
+        
+        .h5_work-active .swiper-slide .h5_work-item {
+            width: 270px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .h5_work-active .swiper-slide .h5_work-item {
+                width: 100%;
+                max-width: 270px;
+            }
         }
         
         /* Modal poster fallback */
@@ -66,6 +90,111 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+        }
+        
+        /* Work section navigation arrows */
+        .h5_work-navigation .h5_work-prev:hover,
+        .h5_work-navigation .h5_work-next:hover {
+            background-color: #7D25EC;
+            border-color: #7D25EC;
+            color: white;
+        }
+        
+        .h5_work-navigation .h5_work-prev.swiper-button-disabled,
+        .h5_work-navigation .h5_work-next.swiper-button-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .h5_work-navigation .h5_work-prev.swiper-button-disabled:hover,
+        .h5_work-navigation .h5_work-next.swiper-button-disabled:hover {
+            background-color: transparent;
+            border-color: #ddd;
+            color: inherit;
+        }
+        
+        /* Mobile responsive for work section header */
+        @media (max-width: 768px) {
+            .section-area.d-flex {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 15px;
+            }
+            
+            .h5_work-navigation {
+                align-self: flex-end;
+            }
+            
+            .section-title {
+                font-size: 24px;
+                line-height: 1.3;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .h5_work-navigation {
+                gap: 10px !important;
+            }
+            
+            .h5_work-navigation .h5_work-prev,
+            .h5_work-navigation .h5_work-next {
+                width: 35px !important;
+                height: 35px !important;
+            }
+            
+            .h5_work-navigation .h5_work-prev i,
+            .h5_work-navigation .h5_work-next i {
+                font-size: 16px !important;
+            }
+            
+            /* Ensure Swiper slides are properly sized on mobile */
+            .h5_work-active .swiper-slide {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            
+            .h5_work-item {
+                width: 100% !important;
+                max-width: 100% !important;
+                aspect-ratio: 2 / 3 !important;
+            }
+            
+            .h5_work-item img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+            
+            .h5_shop-img {
+                width: 100% !important;
+                aspect-ratio: 2 / 3 !important;
+            }
+            
+            .h5_shop-img img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+        }
+        
+        /* iPhone specific fixes */
+        @media (max-width: 428px) {
+            .h5_work-area .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .h5_work-active {
+                overflow: hidden;
+            }
+            
+            .h5_work-active .swiper-wrapper {
+                display: flex;
+            }
         }
     </style>
 
@@ -431,16 +560,16 @@
                     <section class="h5_work-area pt-130 pb-130" id="work-section" style="display: none;">
                         <div class="container">
                             <div class="row mb-30 align-items-end">
-                                <div class="col-xl-6 col-lg-7 col-md-8 col-sm-9">
-                                    <div class="section-area mb-20">
-                                        <h2 class="section-title tp_title_slideup mb-0">Find The Right Photo For Your Projects</h2>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-5 col-md-4 col-sm-3">
-                                    <div class="h5_work-navigation mb-30 tp_fade_left">
-                                        <div class="h5_work-prev"><i class="fa-light fa-angle-left"></i>
-                                        </div>
-                                        <div class="h5_work-next"><i class="fa-light fa-angle-right"></i>
+                                <div class="col-12">
+                                    <div class="section-area mb-20 d-flex align-items-center justify-content-between">
+                                        <h2 class="section-title tp_title_slideup mb-0">Recomended Movies</h2>
+                                        <div class="h5_work-navigation d-flex gap-3">
+                                            <div class="h5_work-prev" style="cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid #ddd; border-radius: 50%; transition: all 0.3s; user-select: none;">
+                                                <i class="fa-light fa-angle-left" style="font-size: 18px;"></i>
+                                            </div>
+                                            <div class="h5_work-next" style="cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid #ddd; border-radius: 50%; transition: all 0.3s; user-select: none;">
+                                                <i class="fa-light fa-angle-right" style="font-size: 18px;"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1085,19 +1214,6 @@
                     <!-- shop area end -->
 
                 </main>
-                <!-- footer area start -->
-                <footer class="h3_footer-area pt-110 pb-105">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="h3_footer-bottom-copyright tp_fade_bottom_footer">
-                                    <p>&copy;2023 Doodle All Rights Reserved.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- footer area end -->
 
             </div>
         </div>
@@ -1158,12 +1274,14 @@
                 
                 // Validate user_id
                 if (!user_id || user_id.toString().trim() === '') {
+                    showNotification('Please enter a User ID', 'error');
                     showErrorModal('Please enter a User ID');
                     return;
                 }
                 
                 const userIdNum = parseInt(user_id);
                 if (isNaN(userIdNum) || userIdNum < 1) {
+                    showNotification('User ID must be a positive number', 'error');
                     showErrorModal('User ID must be a positive number');
                     return;
                 }
@@ -1192,22 +1310,37 @@
                     
                     if (data.success && data.recommendations && data.recommendations.length > 0) {
                         displayRecommendations(data.recommendations, top_n);
+                        
+                        // Show cold start notification if applicable (NO ERROR MODAL for cold start)
+                        if (data.is_cold_start) {
+                            const coldStartMsg = data.cold_start_message || 'No similar users found. Using popular movies fallback (cold start solution).';
+                            showNotification('⚠️ ' + coldStartMsg, 'info');
+                        }
+                        
                         // Scroll to recommendations
                         const workSection = document.getElementById('work-section');
                         const gallerySection = document.getElementById('gallery-section');
-                        const targetSection = top_n <= 4 ? workSection : gallerySection;
+                        const targetSection = top_n < 6 ? workSection : gallerySection;
                         if (targetSection) {
                             setTimeout(() => {
                                 targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                             }, 100);
                         }
                     } else {
+                        // Only show error modal if it's NOT a cold start case
+                        // Cold start should only show notification bar
                         const errorMsg = data.message || 'No recommendations found. Please try a different User ID.';
-                        showErrorModal(errorMsg);
+                        showNotification(errorMsg, 'error');
+                        // Only show modal for actual errors, not cold start
+                        if (!data.is_cold_start) {
+                            showErrorModal(errorMsg);
+                        }
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    showErrorModal('Error fetching recommendations. Please check if the server is running.');
+                    const errorMsg = 'Error fetching recommendations. Please check if the server is running.';
+                    showNotification(errorMsg, 'error');
+                    showErrorModal(errorMsg);
                 } finally {
                     submitButton.disabled = false;
                     submitButton.textContent = originalText;
@@ -1222,8 +1355,8 @@
                 if (workSection) workSection.style.display = 'none';
                 if (gallerySection) gallerySection.style.display = 'none';
                 
-                // Display in Work section if topN <= 4, otherwise in Gallery section
-                if (topN <= 4) {
+                // Display in Work section if topN < 6, otherwise in Gallery section
+                if (topN < 6) {
                     displayInWorkSection(recommendations);
                     if (workSection) workSection.style.display = 'block';
                 } else {
@@ -1238,15 +1371,53 @@
                 
                 workSection.innerHTML = '';
                 
-                recommendations.slice(0, 4).forEach((movie, index) => {
+                // Show all recommendations (up to 5 now)
+                recommendations.forEach((movie, index) => {
                     const slide = createMovieSlide(movie, index);
                     workSection.appendChild(slide);
                 });
                 
-                // Reinitialize Swiper if needed
+                // Initialize or update Swiper with navigation
+                const swiperContainer = document.querySelector('.h5_work-active');
                 if (window.workSwiper) {
-                    window.workSwiper.update();
+                    window.workSwiper.destroy(true, true);
                 }
+                
+                window.workSwiper = new Swiper('.h5_work-active', {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    loop: recommendations.length > 1,
+                    navigation: {
+                        nextEl: '.h5_work-next',
+                        prevEl: '.h5_work-prev',
+                    },
+                    touchEventsTarget: 'container',
+                    touchRatio: 1,
+                    touchAngle: 45,
+                    grabCursor: true,
+                    breakpoints: {
+                        480: {
+                            slidesPerView: 1,
+                            spaceBetween: 20,
+                        },
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 25,
+                        },
+                        768: {
+                            slidesPerView: 2,
+                            spaceBetween: 30,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                            spaceBetween: 30,
+                        },
+                        1200: {
+                            slidesPerView: recommendations.length > 3 ? 3 : recommendations.length,
+                            spaceBetween: 30,
+                        }
+                    }
+                });
             }
             
             function displayInGallerySection(recommendations) {
@@ -1298,7 +1469,7 @@
                 
                 slide.innerHTML = `
                     <div class="h5_work-item" data-movie-id="${movie.movie_id}" style="cursor: pointer;">
-                        <img src="${imagePath}" alt="${title}" style="width: 270px; height: 400px; object-fit: cover; display: block;" onerror="this.src='${DEFAULT_IMAGE}'; this.onerror=null; this.style.width='270px'; this.style.height='400px'; this.style.objectFit='cover';">
+                        <img src="${imagePath}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.src='${DEFAULT_IMAGE}'; this.onerror=null; this.style.width='100%'; this.style.height='100%'; this.style.objectFit='cover';">
                         <a href="#" class="movie-link">${title}</a>
                     </div>
                 `;
@@ -1324,8 +1495,8 @@
                 
                 card.innerHTML = `
                     <div class="h5_shop-item mb-30" data-movie-id="${movie.movie_id}" style="cursor: pointer;">
-                        <div class="h5_shop-img" style="width: 270px; height: 400px; overflow: hidden;">
-                            <img src="${imagePath}" alt="${title}" style="width: 270px; height: 400px; object-fit: cover; display: block;" onerror="this.src='${DEFAULT_IMAGE}'; this.onerror=null; this.style.width='270px'; this.style.height='400px'; this.style.objectFit='cover';">
+                        <div class="h5_shop-img" style="overflow: hidden;">
+                            <img src="${imagePath}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.src='${DEFAULT_IMAGE}'; this.onerror=null; this.style.width='100%'; this.style.height='100%'; this.style.objectFit='cover';">
                             <div class="h5_shop-premium-icon">
                                 <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.1197 0.0265846C10.0591 0.0482168 9.95525 0.100135 9.88603 0.143399C9.81681 0.190991 9.06832 1.26829 8.04727 2.79554C7.09977 4.21463 6.28206 5.41739 6.22582 5.46931C5.95758 5.71159 5.47301 5.77216 5.17016 5.5991C5.07497 5.54286 4.13612 4.85062 3.08046 4.0632C2.0248 3.27145 1.10326 2.58354 1.02538 2.54027C0.847992 2.43211 0.545138 2.42779 0.346119 2.53595C0.190366 2.61815 0 2.91668 0 3.07676C0 3.18492 1.24603 11.3187 1.27631 11.3966C1.30227 11.4788 19.4649 11.4788 19.4908 11.3966C19.5211 11.3187 20.7672 3.18492 20.7672 3.07676C20.7672 2.91668 20.5768 2.61815 20.421 2.53595C20.2263 2.42779 19.9192 2.43211 19.7461 2.53595C19.6682 2.58354 18.7164 3.28876 17.6218 4.10646C16.5315 4.9285 15.571 5.62074 15.4932 5.64669C15.1773 5.75918 14.775 5.68131 14.5413 5.46931C14.4851 5.41739 13.6631 4.21463 12.7199 2.79554C11.3873 0.801026 10.9633 0.195317 10.8422 0.121767C10.6735 0.0136051 10.3014 -0.0339861 10.1197 0.0265846Z" fill="currentColor"/>
@@ -1357,6 +1528,134 @@
                 });
                 
                 return card;
+            }
+            
+            function showNotification(message, type = 'info') {
+                // type can be: 'info', 'error', 'success', 'warning'
+                // Create or get notification container
+                let notification = document.getElementById('notification-bar');
+                if (!notification) {
+                    notification = document.createElement('div');
+                    notification.id = 'notification-bar';
+                    notification.className = 'notification-bar';
+                    document.body.appendChild(notification);
+                    
+                    // Add styles
+                    if (!document.getElementById('notification-styles')) {
+                        const style = document.createElement('style');
+                        style.id = 'notification-styles';
+                        style.textContent = `
+                            .notification-bar {
+                                position: fixed;
+                                top: -100px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                background: white;
+                                padding: 16px 24px;
+                                border-radius: 8px;
+                                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                                z-index: 10002;
+                                min-width: 300px;
+                                max-width: 90%;
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                transition: top 0.3s ease-in-out;
+                                border-left: 4px solid;
+                            }
+                            .notification-bar.show {
+                                top: 20px;
+                            }
+                            .notification-bar.info {
+                                border-left-color: #7D25EC;
+                            }
+                            .notification-bar.error {
+                                border-left-color: #ff6b6b;
+                            }
+                            .notification-bar.success {
+                                border-left-color: #51cf66;
+                            }
+                            .notification-bar.warning {
+                                border-left-color: #ffd43b;
+                            }
+                            .notification-bar .notification-icon {
+                                font-size: 20px;
+                                flex-shrink: 0;
+                            }
+                            .notification-bar.info .notification-icon {
+                                color: #7D25EC;
+                            }
+                            .notification-bar.error .notification-icon {
+                                color: #ff6b6b;
+                            }
+                            .notification-bar.success .notification-icon {
+                                color: #51cf66;
+                            }
+                            .notification-bar.warning .notification-icon {
+                                color: #ffd43b;
+                            }
+                            .notification-bar .notification-message {
+                                flex: 1;
+                                color: #333;
+                                font-size: 14px;
+                                line-height: 1.5;
+                            }
+                            .notification-bar .notification-close {
+                                background: none;
+                                border: none;
+                                font-size: 20px;
+                                color: #999;
+                                cursor: pointer;
+                                padding: 0;
+                                width: 24px;
+                                height: 24px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                flex-shrink: 0;
+                            }
+                            .notification-bar .notification-close:hover {
+                                color: #333;
+                            }
+                            @media (max-width: 480px) {
+                                .notification-bar {
+                                    min-width: auto;
+                                    width: calc(100% - 40px);
+                                    padding: 12px 16px;
+                                }
+                                .notification-bar .notification-message {
+                                    font-size: 13px;
+                                }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                }
+                
+                // Set type and message
+                notification.className = `notification-bar ${type}`;
+                const iconMap = {
+                    'info': 'ℹ️',
+                    'error': '❌',
+                    'success': '✅',
+                    'warning': '⚠️'
+                };
+                notification.innerHTML = `
+                    <span class="notification-icon">${iconMap[type] || iconMap.info}</span>
+                    <span class="notification-message">${message}</span>
+                    <button class="notification-close" onclick="this.closest('.notification-bar').classList.remove('show')">&times;</button>
+                `;
+                
+                // Show notification
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 10);
+                
+                // Auto-hide after 5 seconds (or 8 seconds for info)
+                const autoHideDelay = type === 'info' ? 8000 : 5000;
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, autoHideDelay);
             }
             
             function showErrorModal(message) {

@@ -105,7 +105,7 @@ def recommendations():
             genre = None
         
         # Get recommendations
-        recommendations = get_recommendations(
+        recommendations, is_cold_start = get_recommendations(
             user_id=int(user_id),
             top_n=int(top_n),
             genre=genre,
@@ -118,49 +118,28 @@ def recommendations():
         )
         
         if not recommendations:
-            # Get available user IDs from filtered dataset
-            try:
-                import pandas as pd
-                ratings_sample = pd.read_csv(os.path.join(DATASET_PATH, 'ratings.csv'), nrows=500000)
-                user_rating_counts = ratings_sample['userId'].value_counts()
-                top_users = user_rating_counts.head(MAX_USERS).index.tolist()
-                top_users_sorted = sorted(top_users)[:50]  # Get first 50 sorted user IDs
-                
-                if top_users_sorted:
-                    available_str = ', '.join(map(str, top_users_sorted))
-                    if len(top_users) > 50:
-                        available_str += f'\n... and {len(top_users) - 50} more'
-                else:
-                    available_str = 'Unable to determine'
-            except Exception as e:
-                available_str = f'Unable to determine (Error: {str(e)})'
-            
-            # Provide more helpful error message
-            error_msg = (
-                f'No recommendations found for User ID {user_id}.\n\n'
-                'Why only certain User IDs work:\n'
-                '• System filters to top most active users\n'
-                '• Only users with many ratings are included\n'
-                '• User IDs are filtered by activity, not by ID number\n\n'
-                'Available User IDs in dataset:\n'
-                f'{available_str}\n\n'
-                'Possible reasons for no recommendations:\n'
-                '• User has no similar users with enough common movies\n'
-                '• Genre filter too restrictive\n\n'
-                'Try:\n'
-                '• Use an available User ID from the list above\n'
-                '• Removing genre filter'
-            )
+            # This should rarely happen now (cold start fallback should always return something)
+            # But if it does, it's likely due to very restrictive genre filter
+            error_msg = f'Error: No recommendations found for User ID {user_id}. Try removing genre filter or using a different User ID.'
             return jsonify({
                 'success': False,
                 'message': error_msg,
-                'recommendations': []
+                'recommendations': [],
+                'is_cold_start': False
             }), 200
         
-        return jsonify({
+        # Prepare response
+        response_data = {
             'success': True,
-            'recommendations': recommendations
-        }), 200
+            'recommendations': recommendations,
+            'is_cold_start': is_cold_start
+        }
+        
+        # Add cold start message if applicable
+        if is_cold_start:
+            response_data['cold_start_message'] = f'No similar users found for user {user_id}. Using popular movies fallback (cold start solution).'
+        
+        return jsonify(response_data), 200
         
     except Exception as e:
         # Provide user-friendly error message
