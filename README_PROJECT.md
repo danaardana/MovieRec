@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-MovieRec is a simple academic movie recommendation system built as part of a university project. It demonstrates User-Based Collaborative Filtering integrated with a web-based frontend interface.
+MovieRec is a simple academic movie recommendation system built as part of a university project. It demonstrates Hybrid Recommendation System (combining User-Based Collaborative Filtering and Content-Based Filtering) integrated with a web-based frontend interface.
 
 **Project Type:** Educational/Academic Prototype  
 **Purpose:** Demonstrate core recommender system concepts  
@@ -30,8 +30,8 @@ MovieRec is a simple academic movie recommendation system built as part of a uni
          ├──► Data Loader
          │    (Load ratings & movies)
          │
-         ├──► Collaborative Filtering
-         │    (Generate recommendations)
+         ├──► Hybrid Recommendations
+         │    (CF + Content-Based)
          │
          └──► Image Downloader
               (Fetch movie posters)
@@ -44,14 +44,11 @@ MovieRec/
 ├── backend/
 │   ├── recommender/
 │   │   ├── __init__.py
-│   │   ├── collaborative_filtering.py  # Main CF logic
+│   │   ├── collaborative_filtering.py  # User-Based CF
+│   │   ├── content_based.py            # Content-Based Filtering
+│   │   ├── hybrid.py                   # Hybrid CF + CB
 │   │   ├── similarity.py                # Pearson correlation
 │   │   └── prediction.py                # Rating prediction
-│   ├── evaluator/                       # Performance evaluation
-│   │   ├── __init__.py
-│   │   ├── metrics.py                   # Metric calculations
-│   │   ├── evaluator.py                 # Standard evaluator
-│   │   └── fast_evaluator.py            # Fast evaluator (optimized)
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── image_downloader.py          # Image fetching
@@ -63,9 +60,7 @@ MovieRec/
 │   ├── movies.csv
 │   └── README.txt
 ├── movie_posters/                        # Downloaded images
-├── evaluation_results/                   # Evaluation output (generated)
 ├── index.html                            # Frontend interface
-├── evaluate_system.py                    # Evaluation script
 ├── .gitignore                           # Git ignore rules (excludes dataset/)
 └── README_PROJECT.md                     # This file
 ```
@@ -92,11 +87,16 @@ When a request is received:
    - Filters to top N most active users for memory efficiency
    - **Always includes requested user** even if not in top N (ensures users like 1, 2 work)
 
-2. **Collaborative Filtering** (`recommender/collaborative_filtering.py`)
-   - Finds similar users using Pearson Correlation
-   - **Cold Start Fallback**: If no similar users found, uses popular movies by average rating
-   - Predicts ratings for unrated movies
-   - Generates ranked recommendation list
+2. **Recommendation Generation** (Hybrid System)
+   
+   **Hybrid Recommendations** (`recommender/hybrid.py`):
+   - Combines Collaborative Filtering with Content-Based Filtering
+   - **Collaborative Filtering**: Finds similar users using Pearson Correlation, predicts ratings based on similar users
+   - **Content-Based**: Recommends movies similar to user's preferences based on genre similarity
+   - Multiple combination methods: weighted (default), mixed, or switching
+   - Provides better coverage and handles cold start better than pure CF
+   
+   **Cold Start Fallback**: If no similar users found, uses popular movies by average rating
    - Applies genre filter (if specified) **after** prediction
 
 3. **Image Downloading** (`utils/image_downloader.py`)
@@ -136,7 +136,7 @@ The backend returns a JSON response with recommendations and metadata:
 **Response Fields**:
 - `success`: Boolean indicating if request was successful
 - `recommendations`: Array of movie recommendation objects
-- `is_cold_start`: Boolean indicating if popular movies fallback was used (true) or normal CF was used (false)
+- `is_cold_start`: Boolean indicating if popular movies fallback was used (true) or normal hybrid recommendations were used (false)
 
 ### 4. Frontend Display
 
@@ -219,7 +219,7 @@ async function getRecommendations(userId, genre, topN) {
 }
 ```
 
-**Backend API Endpoint** (to be implemented with Flask/FastAPI):
+**Backend API Endpoint** (Flask implementation in `app.py`):
 
 ```python
 from backend.main import get_recommendations
@@ -231,6 +231,7 @@ def recommendations():
         user_id=data['user_id'],
         top_n=data.get('top_n', 4),
         genre=data.get('genre')
+        # Uses hybrid system by default (CF + Content-Based)
     )
     return jsonify(results)
 ```
@@ -300,51 +301,13 @@ def recommendations():
 |------|---------------|
 | `backend/main.py` | Main API endpoint, orchestrates all components |
 | `backend/data_loader.py` | Loads and preprocesses data |
-| `backend/recommender/collaborative_filtering.py` | Main CF algorithm implementation |
+| `backend/recommender/collaborative_filtering.py` | User-Based CF algorithm implementation |
+| `backend/recommender/content_based.py` | Content-Based Filtering (genre-based) |
+| `backend/recommender/hybrid.py` | Hybrid recommendation combining CF and CB |
 | `backend/recommender/similarity.py` | User similarity computation (Pearson) |
 | `backend/recommender/prediction.py` | Rating prediction from similar users |
 | `backend/utils/image_downloader.py` | Downloads movie poster images |
 | `backend/utils/api_client.py` | Handles TMDB API calls |
-| `backend/evaluator/` | Performance evaluation modules |
-| `evaluate_system.py` | Evaluation script |
-
----
-
-## Performance Evaluation
-
-The system includes a comprehensive evaluation module for quantitative performance assessment.
-
-### Evaluation Features
-
-- **Rating Prediction Metrics**: MAE (Mean Absolute Error), RMSE (Root Mean Squared Error)
-- **Ranking Metrics**: Precision@K, Recall@K, F1@K, NDCG@K
-- **Diversity Metrics**: Intra-list diversity, genre coverage
-- **Additional Metrics**: Coverage, cold start rate
-
-### Usage
-
-```bash
-# Fast evaluation (recommended, 10-100x faster)
-python evaluate_system.py --sample-users 100 --top-n 10
-
-# Standard evaluation (more accurate but slower)
-python evaluate_system.py --standard-mode
-```
-
-### Output Formats
-
-Evaluation results are saved in multiple formats:
-- **JSON**: Structured data for programmatic access
-- **CSV**: Tabular metrics for spreadsheet analysis
-- **LOG**: Detailed log file with timestamps
-- **TXT**: Human-readable text format
-
-Results are saved to `evaluation_results/` directory with timestamps.
-
-For detailed documentation, see:
-- **README_EVALUATION.md**: Complete evaluation documentation
-- **QUICK_START_EVALUATION.md**: Quick start guide
-- **PERFORMANCE_OPTIMIZATION.md**: Performance optimization details
 
 ---
 
@@ -367,12 +330,12 @@ For production use, consider:
 This project demonstrates:
 
 - **Collaborative Filtering**: User-based recommendation approach
+- **Content-Based Filtering**: Genre-based movie similarity
+- **Hybrid Recommendations**: Combining multiple recommendation approaches
 - **Similarity Metrics**: Pearson Correlation for user similarity
 - **Data Preprocessing**: Handling large-scale datasets
 - **System Integration**: Frontend-backend integration
 - **API Integration**: External API usage for metadata
-- **Performance Evaluation**: Comprehensive evaluation with multiple metrics
-- **Optimization**: Fast evaluation mode for efficient experimentation
 
 **Suitable for**: University courses on Recommender Systems, Machine Learning, or Web Development.
 

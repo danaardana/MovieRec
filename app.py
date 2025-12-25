@@ -39,8 +39,13 @@ def recommendations():
     {
         "user_id": int (required),
         "top_n": int (optional, default: 4),
-        "genre": str (optional)
+        "genre": str (optional),
+        "cf_weight": float (optional, default: 0.7) - Weight for Collaborative Filtering,
+        "cb_weight": float (optional, default: 0.3) - Weight for Content-Based,
+        "hybrid_method": str (optional, default: "weighted") - Hybrid method: "weighted", "mixed", or "switching"
     }
+    
+    Note: Always uses hybrid recommendations (combines Collaborative Filtering + Content-Based)
     
     Returns:
     {
@@ -104,7 +109,21 @@ def recommendations():
         else:
             genre = None
         
-        # Get recommendations
+        # Get recommendations using hybrid system (CF + Content-Based)
+        # Accept hybrid parameters from request (optional)
+        try:
+            cf_weight = float(data.get('cf_weight', 0.7))  # Default: 70% CF, 30% CB
+            cb_weight = float(data.get('cb_weight', 0.3))
+            hybrid_method = str(data.get('hybrid_method', 'weighted'))
+            # Validate hybrid_method
+            if hybrid_method not in ['weighted', 'mixed', 'switching']:
+                hybrid_method = 'weighted'
+        except (ValueError, TypeError):
+            # Use defaults if invalid values provided
+            cf_weight = 0.7
+            cb_weight = 0.3
+            hybrid_method = 'weighted'
+        
         recommendations, is_cold_start = get_recommendations(
             user_id=int(user_id),
             top_n=int(top_n),
@@ -114,7 +133,10 @@ def recommendations():
             max_users=MAX_USERS,
             max_movies=MAX_MOVIES,
             download_images=True,
-            image_dir='movie_posters'
+            image_dir='movie_posters',
+            cf_weight=cf_weight,
+            cb_weight=cb_weight,
+            hybrid_method=hybrid_method
         )
         
         if not recommendations:
@@ -132,7 +154,8 @@ def recommendations():
         response_data = {
             'success': True,
             'recommendations': recommendations,
-            'is_cold_start': is_cold_start
+            'is_cold_start': is_cold_start,
+            'recommendation_mode': 'hybrid'  # Always uses hybrid (CF + Content-Based)
         }
         
         # Add cold start message if applicable

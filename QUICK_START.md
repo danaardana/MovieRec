@@ -29,11 +29,20 @@ python backend/main.py --user 189614 --top-n 4 --genre Action
 ```python
 from backend.main import get_recommendations
 
-# Get 4 recommendations for user 189614
+# Get 4 recommendations for user 189614 (Hybrid: CF + Content-Based)
 recommendations = get_recommendations(
     user_id=189614,
     top_n=4,
     genre=None  # or "Action", "Comedy", etc.
+)
+# Uses hybrid system: 70% Collaborative Filtering + 30% Content-Based
+
+# Customize hybrid weights
+recommendations = get_recommendations(
+    user_id=189614,
+    top_n=4,
+    cf_weight=0.8,  # 80% Collaborative Filtering
+    cb_weight=0.2   # 20% Content-Based
 )
 
 # Each recommendation contains:
@@ -45,35 +54,6 @@ recommendations = get_recommendations(
 # - overview (from TMDB)
 # - release_year
 ```
-
-## Evaluate System Performance
-
-### Quick Evaluation (Recommended)
-
-```bash
-# Fast evaluation on 100 users
-python evaluate_system.py --sample-users 100 --top-n 10
-```
-
-### Evaluation with Custom Settings
-
-```bash
-# Evaluate on 50 users with top-5 recommendations
-python evaluate_system.py --sample-users 50 --top-n 5
-
-# Skip diversity calculation for even faster evaluation
-python evaluate_system.py --sample-users 100 --skip-diversity
-```
-
-### View Results
-
-Results are saved to `evaluation_results/` directory in multiple formats:
-- `.json` - Structured data
-- `.csv` - Tabular metrics
-- `.log` - Detailed log
-- `.txt` - Human-readable format
-
-For more details, see **README_EVALUATION.md** or **QUICK_START_EVALUATION.md**.
 
 ## Frontend Integration
 
@@ -107,7 +87,7 @@ fetch('/api/recommendations', {
 
 - **Main Project**: See `README_PROJECT.md`
 - **CF Technical**: See `README_COLLABORATIVE_FILTERING.md`
-- **Evaluation**: See `README_EVALUATION.md` and `QUICK_START_EVALUATION.md`
+- **Hybrid System**: See `README_HYBRID.md`
 - **Utilities**: See `README_UTILS.md`
 - **Structure**: See `STRUCTURE.md`
 

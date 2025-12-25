@@ -13,7 +13,7 @@ from typing import List, Tuple, Optional, Dict
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from backend.data_loader import load_data, create_user_movie_matrix
-from backend.recommender import generate_recommendations
+from backend.recommender import hybrid_recommendations
 from backend.utils import ensure_movie_images, get_movie_overview
 
 
@@ -25,7 +25,10 @@ def get_recommendations(user_id: int,
                        max_users: int = 2000,
                        max_movies: int = 2000,
                        download_images: bool = True,
-                       image_dir: str = 'movie_posters') -> Tuple[List[Dict], bool]:
+                       image_dir: str = 'movie_posters',
+                       cf_weight: float = 0.7,
+                       cb_weight: float = 0.3,
+                       hybrid_method: str = 'weighted') -> Tuple[List[Dict], bool]:
     """
     Get movie recommendations for a user.
     
@@ -41,6 +44,11 @@ def get_recommendations(user_id: int,
         max_movies: Maximum number of movies to load (for memory efficiency)
         download_images: Whether to download poster images automatically
         image_dir: Directory where images are stored
+        cf_weight: Weight for collaborative filtering in hybrid (0.0 to 1.0, default: 0.7)
+        cb_weight: Weight for content-based in hybrid (0.0 to 1.0, default: 0.3)
+        hybrid_method: Hybrid combination method ('weighted', 'mixed', 'switching') (default: 'weighted')
+        
+    Note: This function always uses hybrid recommendations (CF + Content-Based)
     
     Returns:
         Tuple of (recommendations, is_cold_start):
@@ -63,15 +71,18 @@ def get_recommendations(user_id: int,
     # Create user-movie matrix
     user_movie_matrix = create_user_movie_matrix(ratings, use_sparse=True)
     
-    # Generate recommendations
-    recommendations, is_cold_start = generate_recommendations(
+    # Generate recommendations using hybrid system (CF + Content-Based)
+    recommendations, is_cold_start = hybrid_recommendations(
         target_user_id=user_id,
         user_movie_matrix=user_movie_matrix,
         movies=movies,
         top_n=top_n,
+        cf_weight=cf_weight,
+        cb_weight=cb_weight,
         genre_filter=genre,
         min_common_movies=5,
-        top_k_similar=50
+        top_k_similar=50,
+        hybrid_method=hybrid_method
     )
     
     if not recommendations:
